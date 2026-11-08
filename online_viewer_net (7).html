@@ -1,0 +1,1775 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline' https:; font-src https: data:; img-src https: http: data: blob:; connect-src https://auraffx.bond; object-src 'none'; base-uri 'none'; frame-src 'none'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>Rifat - Hosting</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #0a0618;
+            --surface-color: #150a30;
+            --surface-light: #1a0d35;
+            --text-main: #fafafa;
+            --text-muted: #c4b5fd;
+            --primary: #a855f7;
+            --primary-hover: #9333ea;
+            --danger: #ef4444;
+            --danger-hover: #dc2626;
+            --border: #4c1d95;
+            --rainbow: linear-gradient(135deg, #f472b6, #a855f7, #22d3ee);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image:
+                radial-gradient(circle at 15% 50%, rgba(244, 114, 182, 0.15), transparent 30%),
+                radial-gradient(circle at 85% 30%, rgba(168, 85, 247, 0.15), transparent 30%),
+                radial-gradient(circle at 50% 80%, rgba(34, 211, 238, 0.1), transparent 30%);
+        }
+
+        .container {
+            background: var(--surface-color);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 10px 30px -12px rgba(168, 85, 247, 0.3);
+            z-index: 10;
+        }
+
+        .dashboard-container {
+            max-width: 900px;
+            padding: 30px;
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 24px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 24px;
+            background: var(--rainbow);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .form-group { margin-bottom: 20px; }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="file"] {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(168, 85, 247, 0.08);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #7c3aed;
+            border-radius: 50%;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+            background: rgba(168, 85, 247, 0.1);
+        }
+
+        .checkbox-group input[type="checkbox"]:checked {
+            background: var(--rainbow);
+            border-color: #f472b6;
+        }
+
+        .checkbox-group input[type="checkbox"]:checked::after {
+            content: '\2713';
+            font-size: 13px;
+            color: #000;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: 800;
+        }
+
+        .checkbox-group label {
+            margin: 0;
+            font-size: 14px;
+            color: var(--text-main);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        button:hover { background: var(--primary-hover); }
+        button:active { transform: scale(0.98); }
+
+        .toggle-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .toggle-link:hover span { color: #f472b6 !important; }
+
+        .top-bar {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .logout-btn {
+            background: rgba(168, 85, 247, 0.2);
+            width: auto;
+            padding: 8px 16px;
+        }
+        .logout-btn:hover { background: rgba(168, 85, 247, 0.35); }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+        }
+        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
+
+        .panel {
+            background: var(--surface-light);
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #projects-list {
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        #projects-list::-webkit-scrollbar { width: 6px; }
+        #projects-list::-webkit-scrollbar-track { background: rgba(168, 85, 247, 0.1); border-radius: 4px; }
+        #projects-list::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #f472b6, #a855f7, #22d3ee); border-radius: 4px; }
+
+        .project-item {
+            background: rgba(168, 85, 247, 0.08);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: border-color 0.2s;
+        }
+
+        .project-item:hover { border-color: rgba(244, 114, 182, 0.6); }
+
+        .project-info h4 { margin: 0 0 5px 0; font-size: 16px; color: var(--text-main); }
+        .project-info p { margin: 0; font-size: 13px; color: var(--text-muted); }
+
+        .project-actions { display: flex; gap: 8px; }
+
+        .icon-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-main);
+            background: rgba(168, 85, 247, 0.15);
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .icon-btn:hover { background: var(--rainbow); color: #fff; }
+        .icon-btn.danger:hover { background: var(--danger); }
+
+        #toast-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 10000;
+        }
+
+        .toast {
+            background: #1a0d35;
+            border: 1px solid #7c3aed;
+            color: var(--text-main);
+            padding: 12px 16px;
+            border-radius: 8px;
+            box-shadow: 0 10px 15px -3px rgba(168, 85, 247, 0.3);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 250px;
+            transform: translateX(120%);
+            transition: transform 0.3s;
+        }
+
+        .toast.show { transform: translateX(0); }
+        .toast.error { border-left: 4px solid #ef4444; }
+        .toast.success { border-left: 4px solid #34d399; }
+        .toast i { font-size: 18px; }
+        .toast.error i { color: #ef4444; }
+        .toast.success i { color: #34d399; }
+
+        #loader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            color: var(--primary);
+        }
+
+        .animated-field {
+            position: relative;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border);
+            background: rgba(168, 85, 247, 0.08);
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+        .animated-field:focus-within { border-color: #a855f7; }
+        .animated-field i.icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #a855f7;
+            font-size: 1.125rem;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .animated-field:focus-within i.icon { color: #f472b6; }
+        .animated-field input[type="text"],
+        .animated-field input[type="password"] {
+            width: 100%;
+            background: transparent;
+            border: none;
+            padding: 1.1rem 1rem 1.1rem 2.8rem;
+            color: var(--text-main);
+            font-size: 1rem;
+            outline: none;
+            position: relative;
+            z-index: 2;
+        }
+        .animated-field .hover-glow {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .auth-btn {
+            position: relative;
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border-radius: 0.5rem;
+            background: var(--rainbow);
+            color: #fff;
+            font-weight: 600;
+            border: 1px solid rgba(244, 114, 182, 0.5);
+            overflow: hidden;
+            cursor: pointer;
+            transition: filter 0.2s;
+            font-size: 15px;
+            box-shadow: 0 6px 20px -6px rgba(168, 85, 247, 0.5);
+        }
+        .auth-btn:hover { filter: brightness(1.1); }
+        .auth-btn .btn-text {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .auth-btn .btn-hover-effect { display: none; }
+
+        .social-login { margin-top: 2rem; }
+        .social-divider {
+            position: relative;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .social-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 0; right: 0;
+            height: 1px;
+            background: var(--rainbow);
+            opacity: 0.4;
+            z-index: 1;
+        }
+        .social-divider span {
+            background: var(--surface-color);
+            padding: 0 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            position: relative;
+            z-index: 2;
+        }
+        .social-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+        }
+        .social-btn {
+            position: relative;
+            background: rgba(168, 85, 247, 0.08);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            color: var(--text-main);
+            transition: all 0.2s;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            width: 100%;
+        }
+        .social-btn:hover {
+            border-color: #f472b6;
+            background: rgba(244, 114, 182, 0.15);
+        }
+        .social-btn i {
+            position: relative;
+            z-index: 2;
+            font-size: 1.25rem;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 6, 24, 0.85);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: all; }
+        .modal-content {
+            background: var(--surface-color);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 25px 50px -12px rgba(168, 85, 247, 0.4);
+            transform: translateY(20px) scale(0.95);
+            transition: transform 0.3s;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-overlay.active .modal-content { transform: translateY(0) scale(1); }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
+        }
+        .modal-header h3 {
+            margin: 0;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--rainbow);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            width: auto;
+        }
+        .close-modal:hover { color: var(--danger); background: none; }
+
+        .version-list {
+            margin-top: 15px;
+            background: rgba(168, 85, 247, 0.08);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        .version-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            border-bottom: 1px solid var(--border);
+        }
+        .version-item:last-child { border-bottom: none; }
+        .version-name { font-size: 14px; font-weight: 500; }
+        .version-dl {
+            background: var(--rainbow);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            text-decoration: none;
+        }
+        .version-dl:hover { filter: brightness(1.15); }
+
+        .upload-zone {
+            position: relative;
+            border: 2px dashed var(--border);
+            border-radius: 12px;
+            background: rgba(168, 85, 247, 0.06);
+            padding: 30px 20px;
+            text-align: center;
+            cursor: pointer;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .upload-zone:hover, .upload-zone.dragover {
+            border-color: #f472b6;
+            background: rgba(244, 114, 182, 0.08);
+        }
+        .upload-zone .icon-container {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--rainbow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 28px;
+        }
+        .upload-zone .upload-text {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-main);
+            margin: 0;
+        }
+        .upload-zone input[type="file"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        @media (max-width: 500px) {
+            .dashboard-container { padding: 15px 15px 30px 15px; }
+            .top-bar { flex-direction: column; align-items: flex-start !important; margin-bottom: 20px; }
+            .logout-btn { width: 100%; justify-content: center; }
+            .panel { padding: 15px; }
+            .project-item { padding: 12px; gap: 10px; }
+            .project-info h4 { font-size: 14px; }
+            .project-info p { font-size: 12px; word-break: break-all; }
+            .project-actions { gap: 6px; }
+            .icon-btn { width: 34px; height: 34px; }
+        }
+
+        .loader {
+          width: 48px;
+          height: 48px;
+          display: inline-block;
+          position: relative;
+          border-width: 3px 2px 3px 2px;
+          border-style: solid dotted solid dotted;
+          border-color: #f472b6 rgba(168, 85, 247, 0.3) #22d3ee rgba(168, 85, 247, 0.3);
+          border-radius: 50%;
+          box-sizing: border-box;
+          animation: 1s rotate linear infinite;
+        }
+        .loader:before, .loader:after {
+          content: "";
+          top: 0; left: 0;
+          position: absolute;
+          border: 10px solid transparent;
+          border-bottom-color: #fbbf24;
+          transform: translate(-10px, 19px) rotate(-35deg);
+        }
+        .loader:after {
+          border-color: #34d399 transparent transparent transparent;
+          transform: translate(32px, 3px) rotate(-35deg);
+        }
+        @keyframes rotate { 100% { transform: rotate(360deg); } }
+
+        .setup-step { display: none; }
+        .setup-step.active { display: block; }
+        .setup-header { text-align: center; margin-bottom: 2rem; }
+
+        .btn-group { display: flex; gap: 12px; margin-top: 24px; }
+        .btn-secondary { background: rgba(168, 85, 247, 0.2); border: 1px solid rgba(168, 85, 247, 0.3); }
+        .btn-secondary:hover { background: rgba(168, 85, 247, 0.3); }
+
+        #setup-view {
+            --acc: #f472b6;
+            --acc2: #a855f7;
+            --acc3: #22d3ee;
+            max-width: 460px;
+            padding: 26px;
+            position: relative;
+            border-radius: 24px;
+            background: linear-gradient(160deg, #1e0c3c, #0a0618);
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            box-shadow: 0 20px 50px -20px rgba(168, 85, 247, 0.4);
+            margin: 20px;
+        }
+        #setup-view::before {
+            content: '';
+            position: absolute; inset: 0 0 auto 0; height: 3px;
+            background: linear-gradient(90deg, #f472b6, #fbbf24, #34d399, #22d3ee, #a855f7, #f472b6);
+        }
+
+        .sv-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+        .sv-brand { display: flex; align-items: center; gap: 10px; }
+        .sv-brand b { display: block; font-size: 14px; font-weight: 700; }
+        .sv-brand small { display: block; font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+        .sv-logo {
+            width: 36px; height: 36px; border-radius: 11px; display: grid; place-items: center; font-size: 19px; color: #fff;
+            background: var(--rainbow);
+            box-shadow: 0 6px 18px rgba(244, 114, 182, 0.45);
+        }
+
+        .sv-stepper { position: relative; display: grid; grid-template-columns: repeat(5, 1fr); margin-bottom: 24px; }
+        .sv-track { position: absolute; left: 10%; right: 10%; top: 17px; height: 3px; border-radius: 3px; background: rgba(168, 85, 247, 0.2); }
+        .sv-track-fill { height: 100%; width: 0; border-radius: 3px; background: linear-gradient(90deg, #f472b6, #a855f7, #22d3ee, #34d399); transition: width .5s; }
+        .sv-dot { position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; z-index: 1; }
+        .sv-dot span {
+            width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font-size: 17px;
+            background: #1a0d35; border: 1px solid rgba(168, 85, 247, 0.4); color: var(--text-muted); transition: all .35s;
+        }
+        .sv-dot em { font-style: normal; font-size: 10.5px; color: var(--text-muted); }
+        .sv-dot.done span { background: var(--rainbow); color: #fff; border-color: transparent; }
+        .sv-dot.active span { border-color: #f472b6; color: #f472b6; transform: scale(1.08); }
+        .sv-dot.active em, .sv-dot.done em { color: var(--text-main); }
+
+        #setup-view .setup-header { text-align: left; margin-bottom: 16px; }
+        #setup-view h2 {
+            margin: 0; font-size: 24px; font-weight: 700; display: block;
+            background: linear-gradient(135deg, #f472b6 0%, #a855f7 50%, #22d3ee 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        #setup-view .setup-header p { margin: 6px 0 0; font-size: 13px; color: var(--text-muted); }
+        #setup-view .animated-field { margin-bottom: 10px; background: rgba(168, 85, 247, 0.1); border-color: rgba(168, 85, 247, 0.3); border-radius: 12px; }
+        #setup-view .animated-field:focus-within { border-color: #f472b6; }
+        #setup-view .animated-field i.icon { color: #f472b6; }
+        #setup-view .animated-field input[type="text"] { padding: 1.05rem 1rem 1.05rem 2.8rem; font-size: 15px; }
+        .sv-hint { font-size: 12px; color: var(--text-muted); padding-left: 4px; min-height: 16px; }
+        .sv-hint.err { color: #f87171; }
+        .sv-hint.ok { color: #34d399; }
+        #setup-view .animated-field.invalid { border-color: #ef4444; }
+
+        #setup-view .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 22px; }
+        #setup-view .btn-group > :only-child { grid-column: 1 / -1; }
+        #setup-view .auth-btn {
+            width: 100%; height: 52px; padding: 0 14px; border-radius: 14px; display: flex; align-items: center; justify-content: center;
+            font-size: 15px; font-weight: 700; border: none; cursor: pointer; transition: filter .2s;
+        }
+        #setup-view .auth-btn .btn-text { color: #fff; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        #setup-view .auth-btn.nav-next { background: var(--rainbow); }
+        #setup-view .auth-btn.nav-next:hover { filter: brightness(1.1); }
+        #setup-view .auth-btn.nav-back { background: rgba(168, 85, 247, 0.2); border: 1px solid rgba(168, 85, 247, 0.4); }
+        #setup-view .auth-btn.nav-back:hover { background: rgba(168, 85, 247, 0.3); }
+        #setup-view .auth-btn:disabled { opacity: .7; cursor: wait; }
+
+        .sv-summary { margin-top: 6px; border-radius: 12px; border: 1px solid rgba(168, 85, 247, 0.3); background: rgba(168, 85, 247, 0.08); overflow: hidden; }
+        .sv-summary > div { display: flex; align-items: center; gap: 10px; padding: 10px 14px; font-size: 13px; border-bottom: 1px solid rgba(168, 85, 247, 0.2); }
+        .sv-summary > div:last-child { border-bottom: none; }
+        .sv-summary i { color: #f472b6; font-size: 16px; }
+        .sv-summary span { color: var(--text-muted); width: 62px; flex-shrink: 0; }
+        .sv-summary b { font-weight: 500; color: var(--text-main); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+
+        .sv-foot { margin-top: 20px; text-align: center; font-size: 11.5px; color: #a78bfa; display: flex; align-items: center; justify-content: center; gap: 6px; }
+        .sv-foot i { color: #34d399; font-size: 14px; }
+
+        @media (max-width: 480px) {
+            #setup-view { margin: 12px; padding: 20px 16px 18px; }
+            .sv-dot span { width: 32px; height: 32px; font-size: 15px; }
+            .sv-track { top: 15px; }
+            .sv-dot em { font-size: 9.5px; }
+        }
+
+        .pf-avatar { position:relative; width:50px; height:50px; flex-shrink:0; }
+        .pf-avatar::before { content:''; position:absolute; inset:-3px; border-radius:50%;
+            background:conic-gradient(from 0deg,#f472b6,#fbbf24,#34d399,#22d3ee,#a855f7,#f472b6); }
+        .pf-avatar img { position:relative; display:block; width:100%; height:100%; aspect-ratio:1/1; border-radius:50%;
+            object-fit:cover; border:3px solid #0a0618; background:#1e0a3c; }
+        .pf-dot { position:absolute; right:0; bottom:0; width:13px; height:13px; border-radius:50%; background:#34d399; border:3px solid #0a0618; z-index:2; }
+
+        .pf-modal { max-width:360px !important; padding:0 !important; overflow:hidden; text-align:center; border-radius:24px !important;
+            background:linear-gradient(160deg,#1e0c3c,#0a0618) !important; border:1px solid rgba(168,85,247,.4) !important; }
+        .pf-cover { height:96px; background:radial-gradient(circle at 20% 30%,rgba(244,114,182,.7),transparent 55%),
+            radial-gradient(circle at 80% 60%,rgba(34,211,238,.7),transparent 55%), linear-gradient(120deg,#2d1b69,#1e0a3c); }
+        .pf-big { position:relative; width:112px; height:112px; margin:-56px auto 14px; }
+        .pf-big::before { content:''; position:absolute; inset:-4px; border-radius:50%;
+            background:conic-gradient(from 0deg,#f472b6,#fbbf24,#34d399,#22d3ee,#a855f7,#f472b6); }
+        .pf-big img { position:relative; display:block; width:100%; height:100%; border-radius:50%; object-fit:cover;
+            border:5px solid #0a0618; background:#1e0a3c; }
+        .pf-big .pf-dot { width:20px; height:20px; right:6px; bottom:6px; border-width:4px; }
+        .pf-body { padding:0 28px 28px; }
+        .pf-body h3 { margin:0 0 6px; font-size:24px; font-weight:700; }
+        .pf-body p { color:var(--text-muted); font-size:13px; margin:0 0 24px; }
+        .pf-actions { display:flex; gap:12px; }
+        .pf-actions .auth-btn { width:50%; border-radius:12px; padding:.85rem 1rem; }
+
+        .pf-bar { display:flex; align-items:center; gap:14px; cursor:pointer; margin:-30px -30px 26px; padding:14px 20px;
+            background:rgba(20,10,40,.98); border-bottom:1px solid rgba(168,85,247,.3); border-radius:16px 16px 0 0; }
+        .pf-bar:hover { background:rgba(30,15,60,.99); }
+        .pf-bar-avatar { position:relative; width:52px; height:52px; flex-shrink:0; border-radius:50%; padding:2px;
+            background:var(--rainbow); }
+        .pf-bar-avatar img { display:block; width:100%; height:100%; aspect-ratio:1/1; border-radius:50%; object-fit:cover; border:2px solid #0a0618; background:#1e0a3c; }
+        .pf-bar-avatar::after { content:''; position:absolute; right:0; bottom:1px; width:12px; height:12px; border-radius:50%; background:#34d399; border:2px solid #0a0618; }
+        .pf-bar-text { min-width:0; }
+        .pf-bar-text h2 { margin:0 0 3px; display:block; font-size:22px; font-weight:800; line-height:1.15; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .pf-bar-text span { display:block; font-size:12.5px; font-weight:700; letter-spacing:2.2px; text-transform:uppercase; color:#f472b6; }
+        @media (max-width:500px) { .pf-bar { margin:-15px -15px 20px; padding:12px 16px; } .pf-bar-text h2 { font-size:20px; } .pf-bar-text span { font-size:11.5px; letter-spacing:1.8px; } }
+
+        .pf-bar { position:fixed; top:0; left:0; right:0; margin:0; border-radius:0; z-index:50;
+            padding:calc(12px + env(safe-area-inset-top,0px)) 18px 12px; background:rgba(20,10,40,.98);
+            border-bottom:1px solid rgba(168,85,247,.4); }
+        body.has-bar { padding-top:96px; box-sizing:border-box; align-items:flex-start; justify-content:center; padding-top:calc(78px + 18px + env(safe-area-inset-top,0px)); padding-bottom:24px; }
+        body.has-bar .dashboard-container { margin:0 auto; }
+
+        .pf-bar-text h2 b { font-weight:800; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+            background:var(--rainbow); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+        .pf-bar-text h2 i { flex-shrink:0; font-size:19px; color:#fafafa; -webkit-text-fill-color:#fafafa; }
+
+        .panel { position:relative; border-radius:20px; padding:22px; border:1px solid rgba(168,85,247,.3);
+            background:linear-gradient(180deg,#231146,#0a0618); box-shadow:0 20px 40px -24px rgba(168,85,247,.4); }
+        .pn-title { display:flex; align-items:center; gap:12px; margin:0 0 20px; font-size:18px; font-weight:700; }
+        .pn-ico { width:42px; height:42px; flex-shrink:0; border-radius:13px; display:grid; place-items:center; font-size:20px; color:#fff;
+            background:var(--rainbow); }
+        .pn-t { display:flex; flex-direction:column; gap:2px; line-height:1.15; min-width:0; }
+        .pn-t small { font-size:11.5px; font-weight:500; color:var(--text-muted); letter-spacing:.3px; }
+        .pn-count { margin-left:auto; font-style:normal; font-size:13px; font-weight:700; min-width:30px; text-align:center; padding:5px 10px; border-radius:999px;
+            color:#fff; background:var(--rainbow); }
+
+        .panel .animated-field { border-radius:14px; background:rgba(168,85,247,.08); border-color:rgba(168,85,247,.3); }
+        .panel .animated-field:focus-within { border-color:#f472b6; }
+        .panel .animated-field i.icon { color:#f472b6; }
+
+        .upload-zone { border:1.5px dashed rgba(168,85,247,.4); border-radius:18px; padding:34px 18px; gap:14px;
+            background:rgba(168,85,247,.05); }
+        .upload-zone:hover, .upload-zone.dragover { border-color:#f472b6; background:rgba(244,114,182,.08); }
+        .upload-zone .icon-container { width:64px; height:64px; font-size:28px; background:var(--rainbow); margin-bottom:4px; }
+        .upload-zone .upload-text { font-size:16px; font-weight:700; margin:0; }
+        .upload-zone.has-file { border-style:solid; border-color:rgba(244,114,182,.7); background:rgba(244,114,182,.1); }
+        .upload-zone.has-file .icon-container { background:#34d399; }
+
+        #up-btn, #update-btn { height:50px; padding:0 16px; border-radius:14px; background:var(--rainbow); border:1px solid rgba(244,114,182,.5); color:#fff; font-weight:700; font-size:15px;
+            display:flex; align-items:center; justify-content:center; gap:8px; }
+        #up-btn:hover, #update-btn:hover { filter:brightness(1.1); }
+
+        #projects-list { max-height:none; overflow:visible; padding-right:0; display:flex; flex-direction:column; gap:10px; }
+        .project-item { margin:0; padding:12px 12px 12px 14px; border-radius:16px; gap:12px; background:rgba(168,85,247,.1);
+            border:1px solid rgba(168,85,247,.3); }
+        .project-item:hover { border-color:rgba(244,114,182,.6); background:rgba(168,85,247,.18); }
+        .project-left { display:flex; align-items:center; gap:12px; min-width:0; flex:1; }
+        .proj-ico { width:42px; height:42px; flex-shrink:0; border-radius:13px; display:grid; place-items:center; font-size:20px; color:#fff;
+            background:var(--rainbow); }
+        .project-info { min-width:0; }
+        .project-info h4 { margin:0 0 3px; font-size:15px; font-weight:700; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+        .project-info p { font-size:12px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+        .project-info p a { color:var(--text-muted); text-decoration:none; }
+        .project-info p a:hover { color:#f472b6; }
+        .project-actions .icon-btn { width:36px; height:36px; border-radius:11px; flex-shrink:0; background:rgba(168,85,247,.2) !important; color:#e4e4e7 !important; border:1px solid rgba(168,85,247,.3); }
+        .project-actions .icon-btn:hover { background:var(--rainbow) !important; color:#fff !important; border-color:#f472b6; }
+        .proj-empty { display:flex; flex-direction:column; align-items:center; gap:6px; padding:34px 10px; text-align:center; border:1.5px dashed rgba(168,85,247,.3); border-radius:16px; background:rgba(168,85,247,.05); }
+        .proj-empty span { width:56px; height:56px; border-radius:50%; display:grid; place-items:center; font-size:26px; color:#fff; background:var(--rainbow); margin-bottom:6px; }
+        .proj-empty b { font-size:15px; } .proj-empty small { color:var(--text-muted); font-size:12.5px; }
+
+        #dl-overlay { position:fixed; inset:0; z-index:20000; display:none; align-items:center; justify-content:center; background:#0a0618; opacity:0; transition:opacity .4s; }
+        #dl-overlay.show { display:flex; opacity:1; }
+        .dl-box { text-align:center; padding:24px; width:100%; max-width:340px; }
+        .dl-title { margin:0 0 6px; font-size:24px; font-weight:800; background:var(--rainbow); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+        .dl-file { margin:0 0 4px; font-size:13px; color:#e4e4e7; word-break:break-all; }
+        .dl-sub { margin:0 0 22px; font-size:13px; color:var(--text-muted); }
+        .dl-bar { width:100%; height:4px; border-radius:4px; background:rgba(168,85,247,.2); overflow:hidden; }
+        .dl-bar span { display:block; height:100%; width:0; border-radius:4px; background:var(--rainbow); }
+        #dl-overlay.show .dl-bar span { animation:dlBar 2.8s linear forwards; }
+        @keyframes dlBar { to { width:100%; } }
+
+        #upload-form .animated-field { margin-bottom:10px; }
+        .url-preview { display:flex; align-items:center; gap:10px; margin:0 0 22px; padding:11px 14px; border-radius:13px; font-size:13.5px;
+            background:rgba(168,85,247,.1); border:1px solid rgba(244,114,182,.4); }
+        .url-preview i { font-size:18px; color:#f472b6; flex-shrink:0; }
+        .url-preview .url-text { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:#c4b5fd; }
+        .url-preview b { font-weight:700; color:#fafafa; }
+        .url-preview.empty { background:rgba(168,85,247,.04); border:1px dashed rgba(168,85,247,.25); }
+        .url-preview.empty i { color:#7c3aed; }
+        .url-preview.empty b { color:rgba(196,181,253,.5); font-weight:600; }
+
+        #upload-form .animated-field { border-radius:16px; border:1px solid rgba(168,85,247,.3);
+            background:linear-gradient(180deg,rgba(168,85,247,.1),rgba(168,85,247,.03)); }
+        #upload-form .animated-field:focus-within { border-color:#f472b6; }
+        #upload-form .animated-field i.icon { left:10px; width:38px; height:38px; display:grid; place-items:center; border-radius:12px; font-size:19px; color:#fff;
+            background:var(--rainbow); }
+        #upload-form .animated-field input[type="text"] { padding:1.2rem 1rem 1.2rem 4rem; font-size:16px; font-weight:600; color:#fafafa; }
+
+        #host-overlay { position:fixed; inset:0; z-index:20000; display:none; align-items:center; justify-content:center; background:#0a0618; opacity:0; }
+        #host-overlay.show { display:flex; opacity:1; }
+        .host-link { display:flex; align-items:center; gap:10px; padding:11px 12px 11px 14px; border-radius:14px; text-align:left; background:rgba(168,85,247,.15); border:1px solid rgba(244,114,182,.4); }
+        .host-link > i { font-size:20px; color:#f472b6; flex-shrink:0; }
+        .host-link a { flex:1; min-width:0; color:#fff; font-weight:700; font-size:14px; text-decoration:none; word-break:break-all; }
+        .host-copy { width:36px; height:36px; padding:0; flex-shrink:0; border-radius:10px; font-size:17px; color:#fff; background:var(--rainbow); border:1px solid rgba(255,255,255,.2); }
+        .host-copy:hover { filter:brightness(1.15); }
+        .host-actions { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px; }
+        .host-btn { height:48px; padding:0; border-radius:12px; font-size:14.5px; font-weight:700; display:flex; align-items:center; justify-content:center; gap:7px; text-decoration:none; border:1.5px solid transparent; width:100%; box-sizing:border-box; }
+        .host-btn.primary { background:var(--rainbow); color:#fff; }
+        .host-btn.primary:hover { filter:brightness(1.1); }
+        .host-btn.ghost { background:rgba(168,85,247,.15); color:#fff; border-color:rgba(168,85,247,.4); }
+        .host-btn.ghost:hover { background:rgba(168,85,247,.25); }
+
+        html:has(body.auth-mode), body.auth-mode { height:100dvh; min-height:0; overflow:hidden; }
+        body.auth-mode { align-items:center; justify-content:center; padding:0; }
+        #auth-view { width:calc(100% - 28px); max-width:360px; max-height:calc(100dvh - 20px); margin:10px auto; padding:clamp(12px,2.6dvh,22px) 18px; border-radius:18px; box-sizing:border-box; overflow:hidden;
+            display:flex; flex-direction:column; justify-content:center; }
+        #auth-view > div { width:100%; }
+        #auth-view [style*="margin-bottom: 2rem"] { margin-bottom:clamp(8px,2dvh,16px) !important; }
+        #auth-view [style*="width: 64px"] { width:clamp(40px,7dvh,52px) !important; height:clamp(40px,7dvh,52px) !important; margin-bottom:clamp(4px,1dvh,8px) !important; }
+        #auth-view [style*="width: 64px"] i { font-size:clamp(20px,3.6dvh,26px) !important; }
+        #auth-view h2 { font-size:clamp(20px,3.4dvh,24px) !important; margin:0 !important; }
+        #auth-view [style*="margin-top: 8px"] { margin-top:3px !important; font-size:12.5px !important; }
+        #auth-view .animated-field { margin-bottom:clamp(8px,1.5dvh,12px); border-radius:12px; }
+        #auth-view .animated-field input[type="text"], #auth-view .animated-field input[type="password"] { padding:clamp(10px,1.9dvh,13px) 12px clamp(10px,1.9dvh,13px) 2.5rem; font-size:14px; }
+        #auth-view .animated-field i.icon { left:.85rem; font-size:1rem; }
+        #auth-view .checkbox-group { gap:9px; margin-bottom:clamp(8px,1.6dvh,12px) !important; }
+        #auth-view [style*="margin-bottom: 24px"] { margin-bottom:clamp(8px,1.6dvh,12px) !important; }
+        #auth-view .checkbox-group input[type="checkbox"] { width:16px; height:16px; }
+        #auth-view .checkbox-group label { font-size:13px !important; }
+        #auth-view .auth-btn { padding:clamp(10px,1.9dvh,12px) 14px; font-size:14px; border-radius:10px; }
+        #auth-view .social-login { margin-top:clamp(10px,2dvh,16px); }
+        #auth-view .social-divider { margin-bottom:clamp(8px,1.5dvh,12px); }
+        #auth-view .social-divider span { font-size:12px; }
+        #auth-view .social-buttons { gap:8px; }
+        #auth-view .social-btn { padding:clamp(8px,1.4dvh,10px); border-radius:10px; }
+        #auth-view .social-btn i { font-size:1.1rem; }
+        #auth-view .toggle-link { margin-top:clamp(8px,1.8dvh,14px); font-size:13px; }
+
+        #setup-view .setup-header { margin-bottom:18px; }
+        #setup-view h2 { font-weight:700; }
+        #setup-view .setup-header p { margin:8px 0 0; font-size:14.5px; font-weight:600; letter-spacing:.2px; color:#e4e4e7; -webkit-text-fill-color:#e4e4e7; }
+    </style>
+<link rel="icon" href="https://files.catbox.moe/zebyg4.jpg"><link rel="shortcut icon" href="https://files.catbox.moe/zebyg4.jpg"><link rel="apple-touch-icon" href="https://files.catbox.moe/zebyg4.jpg"></head>
+<body>
+    <div id="toast-container"></div>
+    
+    <div id="loader" style="display: none;">
+        <div style="text-align: center;">
+            <div class="loader" style="margin-bottom: 20px;"></div>
+            <div id="loader-text" style="font-size: 14px; color: var(--text-main); font-weight: 500;">Connecting to server...</div>
+        </div>
+    </div>
+    
+    <div class="container" id="auth-view" style="display: none;">
+        <div id="login-form">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <div style="display: inline-flex; align-items: center; justify-content: center; width: 64px; height: 64px; background: rgba(168, 85, 247, 0.15); border-radius: 50%; margin-bottom: 1rem; border: 1px solid #7c3aed;">
+                    <i class="ti ti-user" style="font-size: 32px; color: #f472b6;"></i>
+                </div>
+                <h2 style="margin: 0; font-size: 28px; justify-content: center; color: var(--text-main);">Welcome Back</h2>
+                <p style="color: var(--text-muted); margin-top: 8px; font-size: 14px;">Login to continue</p>
+            </div>
+
+            <form id="form-login" onsubmit="handleAuth(event, '/login')">
+                <div class="animated-field" onmousemove="handleGlow(event, this)">
+                    <i class="ti ti-user icon"></i>
+                    <input type="text" id="log-user" required="" placeholder="Username">
+                    <div class="hover-glow"></div>
+                </div>
+                
+                <div class="animated-field" onmousemove="handleGlow(event, this)">
+                    <i class="ti ti-lock icon"></i>
+                    <input type="password" id="log-pass" required="" placeholder="Password">
+                    <div class="hover-glow"></div>
+                </div>
+
+                <div style="display: flex; justify-content: flex-start; align-items: center; margin-bottom: 24px;">
+                    <div class="checkbox-group" style="margin-bottom: 0;">
+                        <input type="checkbox" id="log-rem" value="yes">
+                        <label for="log-rem" style="cursor: pointer; color: var(--text-main); font-size: 14px;">Save Me</label>
+                    </div>
+                </div>
+                
+                <button type="submit" class="auth-btn">
+                    <span class="btn-text">Login</span>
+                </button>
+            </form>
+            
+            <div class="social-login">
+                <div class="social-divider">
+                    <span>Or continue with</span>
+                </div>
+                <div class="social-buttons">
+                    <button class="social-btn" type="button" id="btn-fb-login" onclick="window.open(&quot;https://www.facebook.com/profile.php?id=61596021444486&quot;, '_blank', 'noopener')"><i class="ti ti-brand-facebook"></i></button>
+                    <button class="social-btn" type="button" id="btn-tt-login" onclick="window.open(&quot;https://tiktok.com/@user22ccfdfggzzz12&quot;, '_blank', 'noopener')"><i class="ti ti-brand-tiktok"></i></button>
+                </div>
+            </div>
+
+            <div class="toggle-link" onclick="toggleAuth()">Don't have an account? <span style="color: #f472b6; font-weight: 500;">Sign up</span></div>
+        </div>
+
+        <div id="register-form" style="display: none;">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <div style="display: inline-flex; align-items: center; justify-content: center; width: 64px; height: 64px; background: rgba(168, 85, 247, 0.15); border-radius: 50%; margin-bottom: 1rem; border: 1px solid #7c3aed;">
+                    <i class="ti ti-user-plus" style="font-size: 32px; color: #f472b6;"></i>
+                </div>
+                <h2 style="margin: 0; font-size: 28px; justify-content: center; color: var(--text-main);">Create Account</h2>
+                <p style="color: var(--text-muted); margin-top: 8px; font-size: 14px;">Sign up to get started</p>
+            </div>
+
+            <form id="form-register" onsubmit="handleAuth(event, '/register')">
+                <div class="animated-field" onmousemove="handleGlow(event, this)">
+                    <i class="ti ti-user icon"></i>
+                    <input type="text" id="reg-user" required="" placeholder="Choose Username">
+                    <div class="hover-glow"></div>
+                </div>
+                
+                <div class="animated-field" onmousemove="handleGlow(event, this)">
+                    <i class="ti ti-lock icon"></i>
+                    <input type="password" id="reg-pass" required="" placeholder="Choose Password">
+                    <div class="hover-glow"></div>
+                </div>
+
+                <div class="checkbox-group" style="margin-bottom: 24px;">
+                    <input type="checkbox" id="reg-rem" value="yes">
+                    <label for="reg-rem" style="cursor: pointer; color: var(--text-main); font-size: 14px;">Save Me</label>
+                </div>
+                
+                <button type="submit" class="auth-btn">
+                    <span class="btn-text">Create Account</span>
+                </button>
+            </form>
+            
+            <div class="social-login">
+                <div class="social-divider">
+                    <span>Or continue with</span>
+                </div>
+                <div class="social-buttons">
+                    <button class="social-btn" type="button" id="btn-fb-reg" onclick="window.open(&quot;https://www.facebook.com/profile.php?id=61596021444486&quot;, '_blank', 'noopener')"><i class="ti ti-brand-facebook"></i></button>
+                    <button class="social-btn" type="button" id="btn-tt-reg" onclick="window.open(&quot;https://tiktok.com/@user22ccfdfggzzz12&quot;, '_blank', 'noopener')"><i class="ti ti-brand-tiktok"></i></button>
+                </div>
+            </div>
+
+            <div class="toggle-link" onclick="toggleAuth()">Already have an account? <span style="color: #f472b6; font-weight: 500;">Login</span></div>
+        </div>
+    </div>
+
+    <div class="pf-bar" id="pf-bar" style="display:none;" onclick="openProfileModal()">
+            <div class="pf-bar-avatar"><img src="https://files.catbox.moe/zebyg4.jpg" alt="Profile" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22%3E%3Crect width=%2280%22 height=%2280%22 fill=%22%23181030%22/%3E%3Ccircle cx=%2240%22 cy=%2231%22 r=%2214%22 fill=%22%23a855f7%22/%3E%3Cpath d=%22M12 72c3-16 15-24 28-24s25 8 28 24z%22 fill=%22%23a855f7%22/%3E%3C/svg%3E'"></div>
+            <div class="pf-bar-text">
+                <h2><b>Rifat</b><i class="ti ti-rosette-discount-check-filled"></i></h2>
+                <span>Hosting Server</span>
+            </div>
+    </div>
+    
+    <div class="container dashboard-container" id="dashboard-view" style="display: none;">
+        <div class="grid">
+            <div class="panel">
+                <h3 class="pn-title"><span class="pn-ico"><i class="ti ti-cloud-upload"></i></span><span class="pn-t">Deploy New Project<small>Upload your HTML file</small></span></h3>
+                <form id="upload-form" onsubmit="handleUpload(event)">
+                    <div class="animated-field" onmousemove="handleGlow(event, this)">
+                        <i class="ti ti-link icon"></i>
+                        <input type="text" id="up-name" required="" placeholder="Enter your site name" maxlength="40" autocomplete="off">
+                        <div class="hover-glow"></div>
+                    </div>
+                    <div class="url-preview empty" id="url-preview">
+                        <i class="ti ti-world"></i>
+                        <span class="url-text"><b id="url-name">username</b>.auraffx.bond</span>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 24px;">
+                        <div class="upload-zone" id="deploy-upload-zone">
+                            <div class="icon-container">
+                                <i class="ti ti-file-code" id="deploy-icon"></i>
+                            </div>
+                            <p class="upload-text" id="deploy-text">Select HTML File</p>
+                            <input type="file" id="up-file" required="" accept=".html,.htm" onchange="updateUploadUI(this, 'deploy-text', 'deploy-icon')">
+                        </div>
+                    </div>
+                    
+                    <button type="submit" id="up-btn" class="auth-btn">
+                        <span class="btn-text"><i class="ti ti-rocket"></i> Deploy Project</span>
+                    </button>
+                </form>
+            </div>
+            
+            <div class="panel">
+                <h3 class="pn-title"><span class="pn-ico"><i class="ti ti-folder"></i></span><span class="pn-t">My Projects<small>All your deployed sites</small></span><em class="pn-count" id="proj-count">0</em></h3>
+                <div id="projects-list"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal-overlay" id="profile-modal" onclick="if(event.target===this)closeProfileModal()">
+        <div class="modal-content pf-modal">
+            <div class="pf-cover"></div>
+            <div class="pf-big">
+                <img src="https://files.catbox.moe/zebyg4.jpg" alt="Profile" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22%3E%3Crect width=%2280%22 height=%2280%22 fill=%22%23181030%22/%3E%3Ccircle cx=%2240%22 cy=%2231%22 r=%2214%22 fill=%22%23a855f7%22/%3E%3Cpath d=%22M12 72c3-16 15-24 28-24s25 8 28 24z%22 fill=%22%23a855f7%22/%3E%3C/svg%3E'">
+                <span class="pf-dot"></span>
+            </div>
+            <div class="pf-body">
+                <h3>Rifat</h3>
+                <p>Logged in as: <span id="user-display" style="color: var(--text-main); font-weight: 500;"></span></p>
+                <div class="pf-actions">
+                    <button onclick="closeProfileModal()" class="auth-btn" style="background: rgba(168,85,247,0.2);"><i class="ti ti-x"></i> Close</button>
+                    <button onclick="logout()" class="auth-btn" style="background: rgba(239, 68, 68, 0.15); color: #fca5a5;"><i class="ti ti-logout"></i> Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal-overlay" id="delete-modal">
+        <div class="modal-content" style="max-width: 400px; text-align: center; padding: 40px 30px;">
+            <div style="display: inline-flex; align-items: center; justify-content: center; width: 64px; height: 64px; background: rgba(239, 68, 68, 0.15); border-radius: 50%; margin-bottom: 20px;">
+                <i class="ti ti-alert-triangle" style="font-size: 32px; color: var(--danger);"></i>
+            </div>
+            <h3 style="margin: 0 0 10px 0; font-size: 22px;">Delete Project?</h3>
+            <p style="color: var(--text-muted); font-size: 15px; margin-bottom: 5px;">Are you sure you want to delete <span id="delete-project-name-display" style="color: var(--text-main); font-weight: 600;"></span>?</p>
+            <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 30px;">আপনি কি সত্যিই এই প্রজেক্টটি ডিলিট করতে চান?</p>
+            
+            <div style="display: flex; gap: 15px; justify-content: center;">
+                <button onclick="closeDeleteModal()" class="auth-btn" style="background: rgba(168,85,247,0.2); width: 50%;">Cancel</button>
+                <button id="confirm-delete-btn" onclick="executeDeleteProject()" class="auth-btn" style="background: var(--danger); width: 50%;">Delete</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal-overlay" id="edit-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="ti ti-pencil"></i> Edit Project: <span id="edit-project-name-display" style="color:#f472b6;"></span></h3>
+                <button class="close-modal" onclick="closeEditModal()">×</button>
+            </div>
+            
+            <div class="panel" style="margin-bottom: 20px; padding: 15px;">
+                <h4 style="margin-top:0; font-size:15px; color:var(--text-main); margin-bottom:15px;"><i class="ti ti-typography"></i> Rename Project</h4>
+                <form id="rename-form" onsubmit="handleRename(event)" style="display:flex; gap:10px;">
+                    <input type="hidden" id="rename-old-name">
+                    <div class="animated-field" onmousemove="handleGlow(event, this)" style="flex:1; margin-bottom:0;">
+                        <input type="text" id="rename-new-name" required="" style="padding: 10px 12px;">
+                        <div class="hover-glow"></div>
+                    </div>
+                    <button type="submit" id="rename-btn" class="auth-btn" style="width:auto; padding: 10px 15px;"><i class="ti ti-check"></i> Save</button>
+                </form>
+            </div>
+
+            <div class="panel" style="margin-bottom: 20px; padding: 15px;">
+                <h4 style="margin-top:0; font-size:15px; color:var(--text-main); margin-bottom:15px;"><i class="ti ti-upload"></i> Upload New Version</h4>
+                <form id="update-form" onsubmit="handleUpdateProject(event)">
+                    <input type="hidden" id="update-project-name">
+                    <div class="upload-zone" id="update-upload-zone" style="padding: 20px 15px; margin-bottom: 15px;">
+                        <div class="icon-container" style="width: 45px; height: 45px; font-size: 24px;">
+                            <i class="ti ti-upload" id="update-icon"></i>
+                        </div>
+                        <p class="upload-text" id="update-text" style="font-size: 14px;">Select New HTML File</p>
+                        <input type="file" id="update-file" required="" accept=".html,.htm" onchange="updateUploadUI(this, 'update-text', 'update-icon')">
+                    </div>
+                    <button type="submit" id="update-btn" class="auth-btn" style="padding: 10px;"><i class="ti ti-rocket"></i> Update Project</button>
+                </form>
+            </div>
+
+            <div class="panel" style="padding: 15px;">
+                <h4 style="margin-top:0; font-size:15px; color:var(--text-main); margin-bottom:10px;"><i class="ti ti-history"></i> Version History</h4>
+                <div id="edit-versions-list" class="version-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const IS_CONFIGURED = true;
+        const API_BASE = "https://auraffx.bond";
+
+        const esc = t => String(t == null ? '' : t).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        const safeUrl = (u, fb) => { try { const x = new URL(String(u).trim()); return (x.protocol === 'https:' || x.protocol === 'http:') ? x.href : fb; } catch (e) { return fb; } };
+
+        const fetchAPI = async (endpoint, options = {}) => {
+            options.credentials = 'include';
+            try {
+                const res = await fetch(API_BASE + endpoint, options);
+                return res;
+            } catch (err) {
+                console.error('Fetch error:', err);
+                throw err;
+            }
+        };
+
+        async function checkSession() {
+            const wakeTimer = setTimeout(() => {
+                const lt = document.getElementById('loader-text');
+                if(lt) lt.innerHTML = "Waking up Render server...<br><span style='font-size:12px'>(This can take up to 50 seconds on free tier)</span>";
+            }, 3000);
+
+            try {
+                const res = await fetchAPI('/api/user');
+                clearTimeout(wakeTimer);
+                if (res.ok) {
+                    const data = await res.json();
+                    document.getElementById('user-display').innerText = '(' + data.username + ')';
+                    renderProjects(data.projects);
+                    showView('dashboard-view');
+                } else {
+                    showView('auth-view');
+                }
+            } catch (e) {
+                clearTimeout(wakeTimer);
+                showView('auth-view');
+            }
+            document.getElementById('loader').style.display = 'none';
+        }
+
+        function showView(viewId) {
+            document.getElementById('auth-view').style.display = 'none';
+            document.getElementById('dashboard-view').style.display = 'none';
+            const setupView = document.getElementById('setup-view');
+            if (setupView) setupView.style.display = 'none';
+            document.getElementById(viewId).style.display = 'block';
+            const pfBar = document.getElementById('pf-bar');
+            if (pfBar) pfBar.style.display = viewId === 'dashboard-view' ? 'flex' : 'none';
+            document.body.classList.toggle('has-bar', viewId === 'dashboard-view');
+            document.body.classList.toggle('auth-mode', viewId === 'auth-view');
+        }
+
+        function toggleAuth() {
+            const loginForm = document.getElementById('login-form');
+            const regForm = document.getElementById('register-form');
+            if (loginForm.style.display === 'none') {
+                loginForm.style.display = 'block';
+                regForm.style.display = 'none';
+            } else {
+                loginForm.style.display = 'none';
+                regForm.style.display = 'block';
+            }
+        }
+
+        async function handleAuth(e, endpoint) {
+            e.preventDefault();
+            const isLogin = endpoint === '/login';
+            const user = document.getElementById(isLogin ? 'log-user' : 'reg-user').value;
+            const pass = document.getElementById(isLogin ? 'log-pass' : 'reg-pass').value;
+            const rem = document.getElementById(isLogin ? 'log-rem' : 'reg-rem').checked ? 'yes' : 'no';
+
+            const btn = e.target.querySelector('button');
+            const oldText = btn.innerHTML;
+            btn.innerHTML = '<i class="ti ti-loader-2 ti-spin"></i> Please wait...';
+            btn.disabled = true;
+
+            try {
+                const res = await fetchAPI(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username: user, password: pass, remember: rem })
+                });
+
+                if (res.ok) {
+                    if (isLogin) {
+                        checkSession();
+                    } else {
+                        document.getElementById('loader-text').innerText = 'Account created successfully!';
+                        document.getElementById('loader').style.display = 'flex';
+                        setTimeout(() => {
+                            document.getElementById('loader').style.display = 'none';
+                            toggleAuth();
+                            document.getElementById('log-user').value = user;
+                            document.getElementById('log-pass').value = pass;
+                        }, 1500);
+                    }
+                } else {
+                    const text = await res.text();
+                    showError(text);
+                }
+            } catch (err) {
+                showError('Connection failed.');
+            } finally {
+                btn.innerHTML = oldText;
+                btn.disabled = false;
+            }
+        }
+
+        function showError(msg, type = 'error') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            const icon = type === 'error' ? 'ti-alert-circle' : 'ti-check';
+            toast.innerHTML = `<i class="ti ${icon}"></i> <span></span>`;
+            toast.querySelector('span').textContent = msg;
+            container.appendChild(toast);
+            setTimeout(() => toast.classList.add('show'), 10);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 4000);
+        }
+
+        async function logout() {
+            closeProfileModal();
+            document.getElementById('loader').style.display = 'flex';
+            await fetchAPI('/logout');
+            checkSession();
+        }
+
+        async function handleUpload(e) {
+            e.preventDefault();
+            const name = document.getElementById('up-name').value;
+            const file = document.getElementById('up-file').files[0];
+            if (!file || !/\.html?$/i.test(file.name)) { showError('Only HTML files (.html / .htm) are allowed.'); return; }
+
+            const btn = document.getElementById('up-btn');
+            btn.innerHTML = '<span class="btn-text"><i class="ti ti-rocket"></i> Deploying...</span>';
+            btn.disabled = true;
+
+            document.getElementById('loader-text').innerText = 'Deploying your project...';
+            document.getElementById('loader').style.display = 'flex';
+
+            const formData = new FormData();
+            formData.append('siteName', name);
+            formData.append('siteFile', file);
+            formData.append('enableSecurity', 'yes');
+            formData.append('isUpdate', 'false');
+
+            try {
+                const res = await fetchAPI('/upload', { method: 'POST', body: formData });
+                if (res.ok) {
+                    document.getElementById('loader-text').innerText = 'Deployed Successfully!';
+                    document.getElementById('upload-form').reset();
+                    updateUploadUI(document.getElementById('up-file'), 'deploy-text', 'deploy-icon');
+                    updateUrlPreview();
+                    setTimeout(() => checkSession(), 1500);
+                } else {
+                    const text = await res.text();
+                    alert('Error: ' + text);
+                    document.getElementById('loader').style.display = 'none';
+                }
+            } catch (err) {
+                alert('Upload failed.');
+                document.getElementById('loader').style.display = 'none';
+            } finally {
+                btn.innerHTML = '<span class="btn-text"><i class="ti ti-rocket"></i> Deploy Project</span>';
+                btn.disabled = false;
+            }
+        }
+
+        function renderProjects(projects) {
+            const list = document.getElementById('projects-list');
+            const cnt = document.getElementById('proj-count');
+            if (cnt) cnt.textContent = projects ? projects.length : 0;
+            if (!projects || projects.length === 0) {
+                list.innerHTML = '<div class="proj-empty"><span><i class="ti ti-folder-open"></i></span><b>No projects yet</b><small>Deploy your first HTML file</small></div>';
+                return;
+            }
+            list.innerHTML = '';
+            projects.forEach((p, i) => {
+                const item = document.createElement('div');
+                item.className = 'project-item';
+                const pName = typeof p === 'string' ? p : p.name;
+                const pVersions = (typeof p !== 'string' && p.versions) ? p.versions : [];
+                const pUrl = safeUrl((typeof p !== 'string' && p.url) ? p.url : `https://${pName}.auraffx.bond`, '#');
+                const pUrlLabel = pUrl.replace('https://', '');
+                const projectDataStr = encodeURIComponent(JSON.stringify({ name: pName, versions: pVersions })).replace(/'/g, '%27');
+                const pNameAttr = encodeURIComponent(pName).replace(/'/g, '%27');
+                item.innerHTML = `
+                    <div class="project-left">
+                        <span class="proj-ico"><i class="ti ti-world"></i></span>
+                        <div class="project-info">
+                            <h4>${esc(pName)}</h4>
+                            <p><a href="${esc(pUrl)}" target="_blank" rel="noopener noreferrer">${esc(pUrlLabel)}</a></p>
+                        </div>
+                    </div>
+                    <div class="project-actions">
+                        <a href="${esc(pUrl)}" target="_blank" rel="noopener noreferrer" class="icon-btn" title="View"><i class="ti ti-external-link"></i></a>
+                        <button onclick="openEditModal('${projectDataStr}')" class="icon-btn" title="Edit"><i class="ti ti-pencil"></i></button>
+                        <button onclick="deleteProject(decodeURIComponent('${pNameAttr}'))" class="icon-btn danger" title="Delete"><i class="ti ti-trash"></i></button>
+                    </div>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        function openProfileModal() { document.getElementById('profile-modal').classList.add('active'); }
+        function closeProfileModal() { document.getElementById('profile-modal').classList.remove('active'); }
+
+        let projectToDelete = null;
+        function deleteProject(name) {
+            projectToDelete = name;
+            document.getElementById('delete-project-name-display').innerText = name;
+            document.getElementById('delete-modal').classList.add('active');
+        }
+        function closeDeleteModal() {
+            document.getElementById('delete-modal').classList.remove('active');
+            projectToDelete = null;
+        }
+        async function executeDeleteProject() {
+            if (!projectToDelete) return;
+            const name = projectToDelete;
+            const btn = document.getElementById('confirm-delete-btn');
+            btn.innerHTML = '<i class="ti ti-loader-2 ti-spin"></i>';
+            btn.disabled = true;
+            try {
+                const res = await fetchAPI('/api/delete', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ siteName: name })
+                });
+                if (res.ok) { closeDeleteModal(); checkSession(); }
+                else { alert('Failed to delete.'); closeDeleteModal(); }
+            } catch(e) { alert('Error connecting to server.'); closeDeleteModal(); }
+            finally { btn.innerHTML = 'Delete'; btn.disabled = false; }
+        }
+
+        function openEditModal(dataStr) {
+            const data = JSON.parse(decodeURIComponent(dataStr));
+            document.getElementById('edit-project-name-display').innerText = data.name;
+            document.getElementById('rename-old-name').value = data.name;
+            document.getElementById('rename-new-name').value = data.name;
+            document.getElementById('update-project-name').value = data.name;
+            document.getElementById('update-file').value = '';
+            const vList = document.getElementById('edit-versions-list');
+            if (data.versions && data.versions.length > 0) {
+                vList.innerHTML = data.versions.map(v => `
+                    <div class="version-item">
+                        <span class="version-name"><i class="ti ti-file-zip"></i> Version ${esc(v)}</span>
+                        <a href="${API_BASE}/api/download-version?project=${encodeURIComponent(data.name)}&v=${encodeURIComponent(v)}" class="version-dl"><i class="ti ti-download"></i> Download</a>
+                    </div>
+                `).join('');
+            } else {
+                vList.innerHTML = '<div style="padding: 15px; text-align: center; color: var(--text-muted); font-size: 13px;">No previous versions found.</div>';
+            }
+            document.getElementById('edit-modal').classList.add('active');
+        }
+        function closeEditModal() { document.getElementById('edit-modal').classList.remove('active'); }
+
+        async function handleRename(e) {
+            e.preventDefault();
+            const oldName = document.getElementById('rename-old-name').value;
+            const newName = document.getElementById('rename-new-name').value;
+            const btn = document.getElementById('rename-btn');
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="ti ti-loader-2 ti-spin"></i>';
+            btn.disabled = true;
+            try {
+                const res = await fetchAPI('/api/rename-project', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ oldName, newName })
+                });
+                if (res.ok) { alert('Project renamed successfully!'); closeEditModal(); checkSession(); }
+                else { const text = await res.text(); alert('Error renaming: ' + text); }
+            } catch (err) { alert('Connection error.'); }
+            finally { btn.innerHTML = originalHTML; btn.disabled = false; }
+        }
+
+        async function handleUpdateProject(e) {
+            e.preventDefault();
+            const name = document.getElementById('update-project-name').value;
+            const file = document.getElementById('update-file').files[0];
+            if (!file || !/\.html?$/i.test(file.name)) { showError('Only HTML files (.html / .htm) are allowed.'); return; }
+            const btn = document.getElementById('update-btn');
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="ti ti-upload"></i> Updating...';
+            btn.disabled = true;
+            document.getElementById('loader-text').innerText = 'Updating your project...';
+            document.getElementById('loader').style.display = 'flex';
+            const formData = new FormData();
+            formData.append('siteName', name);
+            formData.append('siteFile', file);
+            formData.append('isUpdate', 'true');
+            formData.append('enableSecurity', 'no');
+            try {
+                const res = await fetchAPI('/upload', { method: 'POST', body: formData });
+                if (res.ok) {
+                    document.getElementById('loader-text').innerText = 'Updated Successfully!';
+                    setTimeout(() => { closeEditModal(); checkSession(); }, 1500);
+                } else {
+                    const text = await res.text();
+                    alert('Error updating: ' + text);
+                    document.getElementById('loader').style.display = 'none';
+                }
+            } catch (err) {
+                alert('Upload failed.');
+                document.getElementById('loader').style.display = 'none';
+            } finally {
+                btn.innerHTML = originalHTML;
+                btn.disabled = false;
+            }
+        }
+
+        function handleGlow(e, el) {
+            el._gx = e.clientX; el._gy = e.clientY;
+            if (el._gp) return;
+            el._gp = true;
+            requestAnimationFrame(() => {
+                el._gp = false;
+                const rect = el.getBoundingClientRect();
+                const glow = el.querySelector('.hover-glow');
+                if (glow) {
+                    glow.style.background = `radial-gradient(150px circle at ${el._gx - rect.left}px ${el._gy - rect.top}px, rgba(244, 114, 182, 0.15) 0%, transparent 100%)`;
+                }
+            });
+        }
+
+        function updateUrlPreview() {
+            const inp = document.getElementById('up-name');
+            const box = document.getElementById('url-preview');
+            const nameEl = document.getElementById('url-name');
+            if (!inp || !box || !nameEl) return;
+            const clean = inp.value.trim().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+            nameEl.textContent = clean || 'username';
+            box.classList.toggle('empty', !clean);
+        }
+
+        function updateUploadUI(input, textId, iconId) {
+            const textEl = document.getElementById(textId);
+            const iconEl = document.getElementById(iconId);
+            const zone = input.closest('.upload-zone');
+            const isDeploy = textId === 'deploy-text';
+            const f = input.files && input.files[0];
+            if (f && !/\.html?$/i.test(f.name)) {
+                showError('Only HTML files (.html / .htm) are allowed.');
+                input.value = '';
+                return updateUploadUI(input, textId, iconId);
+            }
+            if (f) {
+                textEl.textContent = f.name;
+                iconEl.className = 'ti ti-check';
+                if (zone) zone.classList.add('has-file');
+            } else {
+                textEl.textContent = isDeploy ? 'Select HTML File' : 'Select New HTML File';
+                iconEl.className = isDeploy ? 'ti ti-file-code' : 'ti ti-upload';
+                if (zone) zone.classList.remove('has-file');
+            }
+        }
+
+        const setupDragDrop = (zoneId, inputId) => {
+            const zone = document.getElementById(zoneId);
+            const input = document.getElementById(inputId);
+            if(!zone || !input) return;
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                zone.addEventListener(eventName, preventDefaults, false);
+            });
+            function preventDefaults(e) { e.preventDefault(); e.stopPropagation(); }
+            ['dragenter', 'dragover'].forEach(eventName => {
+                zone.addEventListener(eventName, () => zone.classList.add('dragover'), false);
+            });
+            ['dragleave', 'drop'].forEach(eventName => {
+                zone.addEventListener(eventName, () => zone.classList.remove('dragover'), false);
+            });
+            zone.addEventListener('drop', (e) => {
+                let dt = e.dataTransfer;
+                let files = dt.files;
+                input.files = files;
+                const event = new Event('change');
+                input.dispatchEvent(event);
+            }, false);
+        };
+
+        document.addEventListener("DOMContentLoaded", () => {
+            setupDragDrop('deploy-upload-zone', 'up-file');
+            setupDragDrop('update-upload-zone', 'update-file');
+            const upName = document.getElementById('up-name');
+            if (upName) upName.addEventListener('input', updateUrlPreview);
+        });
+
+        function svUpdateStepper(step) {
+            document.querySelectorAll('.sv-dot').forEach(d => {
+                const n = parseInt(d.dataset.s, 10);
+                d.classList.toggle('done', n < step);
+                d.classList.toggle('active', n === step);
+                const ic = d.querySelector('span i');
+                if (ic) {
+                    if (!ic.dataset.orig) ic.dataset.orig = ic.className;
+                    ic.className = n < step ? 'ti ti-check' : ic.dataset.orig;
+                }
+            });
+            const fill = document.getElementById('sv-fill');
+            if (fill) fill.style.width = ((step - 1) / 4 * 100) + '%';
+        }
+        function svTruncate(s, n) { return s.length > n ? s.slice(0, n - 1) + '…' : s; }
+        function svRefreshSummary() {
+            const g = id => (document.getElementById(id) || {}).value || '';
+            const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v || '-'; };
+            set('sum-name', g('setup-name'));
+            set('sum-img', svTruncate(g('setup-image').replace(/^https?:\/\//, ''), 34));
+            set('sum-tt', svTruncate(g('setup-tiktok').replace(/^https?:\/\//, ''), 34));
+            set('sum-yt', svTruncate(g('setup-youtube').replace(/^https?:\/\//, ''), 34));
+        }
+        function svValidate(step) {
+            const map = { 1: 'setup-name', 2: 'setup-image', 3: 'setup-tiktok', 4: 'setup-youtube' };
+            const input = document.getElementById(map[step]);
+            if (!input) return true;
+            const field = input.closest('.animated-field');
+            const hint = document.getElementById('hint-' + step);
+            const val = input.value.trim();
+            let msg = '';
+            if (!val) msg = 'This field cannot be empty.';
+            else if (step > 1 && !/^https?:\/\/\S+/i.test(val)) msg = 'Please enter a valid link starting with https://';
+            if (msg) {
+                field.classList.add('invalid');
+                if (hint) { hint.textContent = msg; hint.classList.add('err'); }
+                return false;
+            }
+            field.classList.remove('invalid');
+            if (hint) hint.classList.remove('err');
+            return true;
+        }
+        function nextSetupStep(currentStep) {
+            if (!svValidate(currentStep)) return;
+            document.getElementById(`setup-step-${currentStep}`).classList.remove('active');
+            document.getElementById(`setup-step-${currentStep + 1}`).classList.add('active');
+            svUpdateStepper(currentStep + 1);
+            if (currentStep + 1 === 5) svRefreshSummary();
+        }
+        function prevSetupStep(currentStep) {
+            document.getElementById(`setup-step-${currentStep}`).classList.remove('active');
+            document.getElementById(`setup-step-${currentStep - 1}`).classList.add('active');
+            svUpdateStepper(currentStep - 1);
+        }
+
+        function svInitPreview() {
+            const nameIn = document.getElementById('setup-name');
+            if (!nameIn) return;
+            const imgIn = document.getElementById('setup-image');
+            const ttIn = document.getElementById('setup-tiktok');
+            const ytIn = document.getElementById('setup-youtube');
+            const pvName = document.getElementById('pv-name');
+            const pvImg = document.getElementById('pv-img');
+            const pvTt = document.getElementById('pv-tt');
+            const pvYt = document.getElementById('pv-yt');
+            const hint2 = document.getElementById('hint-2');
+            const fallback = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><rect width="80" height="80" fill="#1e0a3c"/><circle cx="40" cy="31" r="14" fill="#a855f7"/><path d="M12 74c3-17 15-25 28-25s25 8 28 25z" fill="#a855f7"/></svg>');
+            nameIn.addEventListener('input', () => {
+                pvName.textContent = nameIn.value.trim() || 'Your Name';
+                nameIn.closest('.animated-field').classList.remove('invalid');
+                document.getElementById('hint-1').classList.remove('err');
+            });
+            let t;
+            imgIn.addEventListener('input', () => {
+                clearTimeout(t);
+                imgIn.closest('.animated-field').classList.remove('invalid');
+                hint2.classList.remove('err', 'ok');
+                t = setTimeout(() => {
+                    const v = imgIn.value.trim();
+                    if (/^https?:\/\/\S+/i.test(v)) pvImg.src = v;
+                    else pvImg.src = fallback;
+                }, 350);
+            });
+            pvImg.addEventListener('load', () => {
+                if (pvImg.src.indexOf('data:') === 0) return;
+                hint2.textContent = 'Image loaded successfully.';
+                hint2.classList.remove('err'); hint2.classList.add('ok');
+            });
+            pvImg.addEventListener('error', () => {
+                if (pvImg.src.indexOf('data:') === 0) return;
+                pvImg.src = fallback;
+                hint2.textContent = "Couldn't load this image. Use a direct image link.";
+                hint2.classList.remove('ok'); hint2.classList.add('err');
+            });
+            const bindChip = (input, chip, base) => {
+                input.addEventListener('input', () => {
+                    input.closest('.animated-field').classList.remove('invalid');
+                    const v = input.value.trim();
+                    const filled = /^https?:\/\/\S+/i.test(v) && v.length > base.length;
+                    chip.classList.toggle('ok', filled);
+                });
+            };
+            bindChip(ttIn, pvTt, 'https://tiktok.com/');
+            bindChip(ytIn, pvYt, 'https://youtube.com/');
+            [nameIn, imgIn, ttIn, ytIn, document.getElementById('setup-filename')].forEach((inp, i) => {
+                inp.addEventListener('keydown', e => {
+                    if (e.key !== 'Enter') return;
+                    e.preventDefault();
+                    if (i < 4) nextSetupStep(i + 1); else svFinish();
+                });
+            });
+            svUpdateStepper(1);
+        }
+        if (document.getElementById('setup-view')) svInitPreview();
+
+        function showDownloadAnimation(fileName) {
+            const o = document.getElementById('dl-overlay');
+            const f = document.getElementById('dl-file');
+            if (f) f.textContent = fileName + '.html';
+            if (o) o.classList.add('show');
+            setTimeout(() => { window.location.href = 'https://devyasin.online/?version-11.0'; }, 2800);
+        }
+
+        let svMode = 'host';
+        const SV_DEFAULT_IMG = "https://files.catbox.moe/zebyg4.jpg";
+        function svCleanSub(v) {
+            return (v || '').trim().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '').replace(/-+/g, '-').replace(/^-|-$/g, '');
+        }
+        function svSetMode(mode) {
+            svMode = mode;
+            document.getElementById('opt-host').classList.toggle('active', mode === 'host');
+            document.getElementById('opt-dl').classList.toggle('active', mode === 'download');
+            document.getElementById('mode-host').style.display = mode === 'host' ? 'block' : 'none';
+            document.getElementById('mode-dl').style.display = mode === 'download' ? 'block' : 'none';
+            document.getElementById('save-btn-label').innerHTML = mode === 'host'
+                ? '<i class="ti ti-rocket"></i> Host Now'
+                : '<i class="ti ti-download"></i> Download';
+        }
+        (function svInitHost() {
+            const inp = document.getElementById('host-domain');
+            if (!inp) return;
+            inp.addEventListener('input', () => {
+                const clean = svCleanSub(inp.value);
+                document.getElementById('host-preview-name').textContent = clean || 'username';
+                document.getElementById('host-preview').classList.toggle('empty', !clean);
+                inp.closest('.animated-field').classList.remove('invalid');
+                const h = document.getElementById('hint-host');
+                h.classList.remove('err'); h.textContent = 'Your portal goes live at this address.';
+            });
+            inp.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); svFinish(); } });
+        })();
+        function svFinish() { if (svMode === 'host') svHostNow(); else handleSaveAndDownload(); }
+
+        function svBuildHtml() {
+            const newName = (document.getElementById('setup-name').value || "Rifat").trim().slice(0, 30) || "Rifat";
+            const newImage = safeUrl(document.getElementById('setup-image').value, SV_DEFAULT_IMG);
+            const newTiktok = safeUrl(document.getElementById('setup-tiktok').value, "https://tiktok.com/");
+            const newYoutube = safeUrl(document.getElementById('setup-youtube').value, "https://youtube.com/");
+            let clonedDoc = document.documentElement.cloneNode(true);
+            ['#setup-view', '#dl-overlay', '#host-overlay'].forEach(sel => {
+                const n = clonedDoc.querySelector(sel);
+                if (n) n.remove();
+            });
+            const titleEl = clonedDoc.querySelector('title');
+            if (titleEl) titleEl.textContent = newName + ' - Hosting';
+            const headEl = clonedDoc.querySelector('head');
+            clonedDoc.querySelectorAll('link[rel="icon"], link[rel="shortcut icon"], link[rel="apple-touch-icon"]').forEach(n => n.remove());
+            if (headEl) {
+                [['icon', ''], ['shortcut icon', ''], ['apple-touch-icon', '']].forEach(([rel]) => {
+                    const l = document.createElement('link');
+                    l.setAttribute('rel', rel);
+                    l.setAttribute('href', newImage);
+                    headEl.appendChild(l);
+                });
+            }
+            const setSocialLink = (id, link) => {
+                const socialBtn = clonedDoc.querySelector(id);
+                if (socialBtn) socialBtn.setAttribute('onclick', 'window.open(' + JSON.stringify(link) + ", '_blank', 'noopener')");
+            };
+            setSocialLink('#btn-fb-login', newYoutube);
+            setSocialLink('#btn-tt-login', newTiktok);
+            setSocialLink('#btn-fb-reg', newYoutube);
+            setSocialLink('#btn-tt-reg', newTiktok);
+            let htmlContent = "<!DOCTYPE html>\n" + clonedDoc.outerHTML;
+            htmlContent = htmlContent.split('Rifat').join(esc(newName));
+            htmlContent = htmlContent.split(SV_DEFAULT_IMG).join(esc(newImage));
+            return htmlContent;
+        }
+
+        async function svHostNow() {
+            const inp = document.getElementById('host-domain');
+            const field = inp.closest('.animated-field');
+            const hint = document.getElementById('hint-host');
+            const sub = svCleanSub(inp.value);
+            if (sub.length < 3) {
+                field.classList.add('invalid');
+                hint.textContent = 'Enter a domain name (at least 3 letters or numbers).';
+                hint.classList.add('err');
+                return;
+            }
+            const btn = document.getElementById('setup-save-btn');
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<span class="btn-text"><i class="ti ti-loader-2 ti-spin"></i> Hosting...</span>';
+            btn.disabled = true;
+            try {
+                const html = svBuildHtml();
+                const file = new File([html], 'index.html', { type: 'text/html' });
+                const fd = new FormData();
+                fd.append('siteName', sub);
+                fd.append('siteFile', file);
+                fd.append('enableSecurity', 'yes');
+                fd.append('isUpdate', 'false');
+                const creds = svNewCreds();
+                if (!(await svAutoLogin(creds))) { showError('Could not create your account. Please try again.'); return; }
+                const res = await fetchAPI('/upload', { method: 'POST', body: fd });
+                const text = await res.text();
+                try { await fetchAPI('/logout'); } catch (e) {}
+                if (res.ok) {
+                    let url = 'https://' + sub + '.auraffx.bond';
+                    try { const d = JSON.parse(text); if (d && d.url) url = d.url; } catch (e) {}
+                    svShowHostSuccess(url);
+                } else if (res.status === 401 || res.status === 403) {
+                    showError('Login required on the server before hosting.');
+                } else {
+                    showError((text && text.length < 140) ? text : 'Hosting failed. Try another domain name.');
+                }
+            } catch (err) {
+                try { await fetchAPI('/logout'); } catch (e) {}
+                showError('Connection failed. Please try again.');
+            } finally {
+                btn.innerHTML = originalHTML;
+                btn.disabled = false;
+            }
+        }
+
+        function svRand(len, chars) {
+            const arr = new Uint32Array(len);
+            crypto.getRandomValues(arr);
+            return Array.from(arr, n => chars[n % chars.length]).join('');
+        }
+        function svNewCreds() {
+            const lower = 'abcdefghijklmnopqrstuvwxyz0123456789';
+            const strong = 'abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789@#$%&*';
+            return { user: 'u' + svRand(20, lower), pass: svRand(40, strong) };
+        }
+        async function svAutoLogin(creds) {
+            const opt = { method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username: creds.user, password: creds.pass, remember: 'no' }) };
+            const reg = await fetchAPI('/register', opt);
+            if (!reg.ok) return false;
+            const r = await fetchAPI('/login', opt);
+            return r.ok;
+        }
+        function svShowHostSuccess(url) {
+            const a = document.getElementById('host-url');
+            a.href = url; a.textContent = url.replace(/^https?:\/\//, '');
+            document.getElementById('host-open').href = url;
+            document.getElementById('host-overlay').classList.add('show');
+        }
+        function svCloseHost() { document.getElementById('host-overlay').classList.remove('show'); }
+        function svCopy() {
+            const u = document.getElementById('host-url').href;
+            const done = () => showError('Link copied', 'success');
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(u).then(done).catch(() => showError('Could not copy link.'));
+            } else {
+                const t = document.createElement('textarea'); t.value = u; document.body.appendChild(t); t.select();
+                try { document.execCommand('copy'); done(); } catch (e) { showError('Could not copy link.'); }
+                t.remove();
+            }
+        }
+        function handleSaveAndDownload() {
+            let fileName = document.getElementById('setup-filename').value || "FFX 11.0";
+            fileName = fileName.replace(/[^a-zA-Z0-9 _.-]/g, '').trim() || "FFX 11.0";
+            const btn = document.getElementById('setup-save-btn');
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<span class="btn-text"><i class="ti ti-loader-2 ti-spin"></i> Generating...</span>';
+            btn.disabled = true;
+            setTimeout(() => {
+                try {
+                    const htmlContent = svBuildHtml();
+                    const blob = new Blob([htmlContent], { type: 'text/html' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `${fileName}.html`;
+                    document.body.appendChild(a);
+                    a.click();
+                    setTimeout(() => {
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                        btn.innerHTML = '<span class="btn-text"><i class="ti ti-check"></i> Downloaded</span>';
+                        showDownloadAnimation(fileName);
+                    }, 100);
+                } catch (e) {
+                    console.error("Error generating file", e);
+                    btn.innerHTML = originalHTML;
+                    btn.disabled = false;
+                }
+            }, 500);
+        }
+        if (!IS_CONFIGURED) {
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('setup-view').style.display = 'block';
+        } else {
+            checkSession();
+        }
+    </script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"2f22d53621574b0f9fa72e49d8caf091","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body></html>
